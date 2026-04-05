@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section-padding" style="overflow: hidden;">
+    <div class="container" style="display: flex; align-items: center; gap: 80px;">
+        <div style="flex: 1;" class="animate">
+            <h5 style="color: var(--text-secondary); margin-bottom: 20px;">OUR MARKETPLACE</h5>
+            <h1 style="font-size: 3.5rem; line-height: 1.2; margin-bottom: 30px;">About our Company<br>NFT Distro</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 40px; font-size: 1.1rem;">
+                We are a cutting-edge company focused on the future of digital ownership. Our marketplace offers a curated selection of NFTs, from stunning artwork to virtual real estate and everything in between.
+            </p>
+        </div>
+        <div style="flex: 1; position: relative;" class="animate">
+            <div style="background: #F0F2F5; border-radius: 40px; padding: 40px; display: flex; justify-content: center; align-items: center;">
+                <img src="{% static 'images/nfts/robot_1.png' %}" alt="NFT Robot" style="max-width: 100%; border-radius: 20px;">
+            </div>
+            <!-- Decorative stickers as seen in design -->
+            <div style="position: absolute; top: -20px; right: -20px; background: white; width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                <i class="fa-solid fa-music" style="color: #FF6A95;"></i>
+            </div>
+            <div style="position: absolute; bottom: 40px; left: -30px; background: white; padding: 15px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+                <i class="fa-solid fa-palette" style="color: #FF6A95; font-size: 1.5rem;"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Future Stats Section -->
+<section class="section-padding">
+    <div class="container" style="display: flex; align-items: center; gap: 80px;">
+        <div style="flex: 1;" class="animate">
+             <div style="position: relative;">
+                <img src="{% static 'images/nfts/astronaut.png' %}" alt="NFT Astronaut" style="max-width: 100%; border-radius: 20px;">
+             </div>
+        </div>
+        <div style="flex: 1;" class="animate">
+            <h2 style="font-size: 2.8rem; margin-bottom: 25px;">NFT Represent<br>the future</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 40px;">
+                Experience the next generation of digital assets. Our platform provides a secure and intuitive environment for creators and collectors to connect and trade unique tokens.
+            </p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div style="text-align: center;">
+                    <i class="fa-solid fa-rocket" style="color: #BA68C8; font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h3 style="font-size: 1.8rem;">23,400</h3>
+                    <p style="color: var(--text-secondary);">NFT’s</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fa-solid fa-wallet" style="color: #FFAB91; font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h3 style="font-size: 1.8rem;">8,000</h3>
+                    <p style="color: var(--text-secondary);">Collections</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fa-solid fa-users" style="color: #81D4FA; font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h3 style="font-size: 1.8rem;">3,400</h3>
+                    <p style="color: var(--text-secondary);">Creators</p>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fa-solid fa-chart-line" style="color: #A5D6A7; font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h3 style="font-size: 1.8rem;">521 B+</h3>
+                    <p style="color: var(--text-secondary);">Volume</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Partners Section -->
+<section class="section-padding container animate">
+    <h2 style="text-align: center; margin-bottom: 60px;">Our Partners</h2>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px; opacity: 0.5;">
+        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">LOGOTYPE</div>
+        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">BOGO</div>
+        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">TRUSTY</div>
+        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">LOGOSUM</div>
+        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">CRYPTO</div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px; opacity: 0.5; margin-top: 40px;">
+        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">FINANCE</div>
+        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">GALAXY</div>
+        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">MINT</div>
+        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">BLOCKS</div>
+        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">PANDA</div>
+    </div>
+</section>
+
+<!-- Our Team Section -->
+<section class="section-padding animate">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">Our Team</h2>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
+            <div style="text-align: center;">
+                <img src="{% static 'images/team/member_1.png' %}" alt="Team member" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+                <h3>Floyd Miles</h3>
+                <p style="color: var(--text-secondary);">Designer</p>
+            </div>
+            <div style="text-align: center;">
+                <img src="{% static 'images/team/member_2.png' %}" alt="Team member" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+                <h3>Eleanor Pena</h3>
+                <p style="color: var(--text-secondary);">VA Designer</p>
+            </div>
+            <div style="text-align: center;">
+                <img src="{% static 'images/team/member_3.png' %}" alt="Team member" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+                <h3>Kim Dorka</h3>
+                <p style="color: var(--text-secondary);">UX Specialist</p>
+            </div>
+            <div style="text-align: center;">
+                <img src="https://ui-avatars.com/api/?name=William+Lake&background=random" alt="Team member" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+                <h3>William Lake</h3>
+                <p style="color: var(--text-secondary);">Software Engineer</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="container animate" style="margin-bottom: 80px;">
+    <div style="background: #0A0A0B; border-radius: 30px; padding: 80px; text-align: center; color: white;">
+        <h2 style="font-size: 3rem; margin-bottom: 20px;">Interested in joining us?</h2>
+        <p style="color: #ADB5BD; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Experience the revolutionary world of Non-Fungible Tokens on Our Exclusive NFT Marketplace. Join our team today!
+        </p>
+        <a href="#" class="btn btn-primary">Join us</a>
+    </div>
+</section>
+{% endblock %}

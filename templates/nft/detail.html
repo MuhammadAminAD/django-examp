@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section-padding">
+    <div class="container animate" style="display: flex; gap: 80px; align-items: flex-start;">
+        <!-- NFT Image Side -->
+        <div style="flex: 1;">
+            <div style="background: #F8F9FA; border-radius: 30px; padding: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                <img src="{% static 'images/nfts/robot_1.png' %}" alt="ExBoot #1" style="width: 100%; border-radius: 20px;">
+            </div>
+        </div>
+
+        <!-- Details Side -->
+        <div style="flex: 1;">
+            <h1 style="font-size: 3.5rem; margin-bottom: 10px;">ExBoot #1</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 30px;">Minted on Dec 31, 2022</p>
+            
+            <div style="display: flex; gap: 30px; margin-bottom: 40px;">
+                <div style="flex: 1; padding: 20px; border: 1px solid var(--border-color); border-radius: 20px;">
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px;">Collection</p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="{% static 'images/team/member_1.png' %}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                        <span style="font-weight: 700; font-size: 1.1rem;">Richard</span>
+                    </div>
+                </div>
+                <div style="flex: 1; padding: 20px; border: 1px solid var(--border-color); border-radius: 20px;">
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px;">Creator</p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <img src="{% static 'images/team/member_2.png' %}" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                        <span style="font-weight: 700; font-size: 1.1rem;">Michael</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 40px;">
+                <h3 style="margin-bottom: 15px;">Description</h3>
+                <p style="color: var(--text-secondary); line-height: 1.8;">
+                    We would like to present you The Exboot 3D – Watching you~ a digital collectible that utilizes blockchain technology to prove authenticity and scarcity. A must-have for any futuristic art enthusiast.
+                </p>
+            </div>
+
+            <div style="display: flex; gap: 40px; margin-bottom: 40px;">
+                <div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px;">Current Bid</p>
+                    <h2 style="font-size: 2rem;"><i class="fa-brands fa-ethereum"></i> 3.421 ETH</h2>
+                </div>
+                <div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px;">End in</p>
+                    <h2 style="font-size: 2rem;">1h 12m 14s</h2>
+                </div>
+            </div>
+
+            <a href="#" class="btn btn-primary" style="width: 100%; padding: 20px; font-size: 1.2rem; border-radius: 15px;">
+                <i class="fa-solid fa-wallet" style="margin-right: 15px;"></i> Place Bid
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

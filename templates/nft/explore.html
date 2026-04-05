@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section-padding">
+    <div class="container animate">
+        <h1 style="text-align: center; font-size: 3.5rem; margin-bottom: 60px;">Discover Amazing NFT's</h1>
+        
+        <!-- Search and Filters -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+            <div style="display: flex; gap: 20px;">
+                <a href="#" class="btn btn-primary">NFT's</a>
+                <a href="#" class="btn btn-outline" style="border: none; background: #F8F9FA;">Collections</a>
+                <a href="#" class="btn btn-outline" style="border: none; background: #F8F9FA;">Series</a>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span style="color: var(--text-secondary);">Sort by:</span>
+                <div style="padding: 10px 20px; background: #F8F9FA; border-radius: 50px; font-weight: 600; cursor: pointer;">
+                    Recently Added <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 10px;"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- NFT Grid -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
+            <!-- NFT Item 1 -->
+            <div class="nft-card animate">
+                <div class="nft-image-container">
+                    <img src="{% static 'images/nfts/robot_1.png' %}" alt="ExBoot #1">
+                </div>
+                <div class="nft-info">
+                    <div class="nft-header">
+                        <h4 style="font-size: 1.2rem;">ExBoot #1</h4>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;"><i class="fa-solid fa-clock"></i> 2h 4m 10s</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <img src="https://ui-avatars.com/api/?name=Richard&background=random" style="width: 24px; height: 24px; border-radius: 50%;">
+                        <span style="font-weight: 500; font-size: 0.9rem;">Richard</span>
+                        <i class="fa-solid fa-circle-check" style="color: #42a5f5; font-size: 0.8rem;"></i>
+                    </div>
+                    <div class="nft-bid-section">
+                        <div>
+                            <p style="color: var(--text-secondary); font-size: 0.8rem;">Current Bid</p>
+                            <p style="font-weight: 700;"><i class="fa-brands fa-ethereum"></i> 3.421 ETH</p>
+                        </div>
+                        <a href="{% url 'nft:detail' %}" class="btn btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Place Bid</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NFT Item 2 (Astronaut) -->
+            <div class="nft-card animate" style="animation-delay: 0.1s;">
+                <div class="nft-image-container">
+                    <img src="{% static 'images/nfts/astronaut.png' %}" alt="ExBoot #2">
+                </div>
+                <div class="nft-info">
+                    <div class="nft-header">
+                        <h4 style="font-size: 1.2rem;">ExBoot #2</h4>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;"><i class="fa-solid fa-clock"></i> 4h 12m 5s</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <img src="https://ui-avatars.com/api/?name=Michael&background=random" style="width: 24px; height: 24px; border-radius: 50%;">
+                        <span style="font-weight: 500; font-size: 0.9rem;">Michael</span>
+                        <i class="fa-solid fa-circle-check" style="color: #42a5f5; font-size: 0.8rem;"></i>
+                    </div>
+                    <div class="nft-bid-section">
+                        <div>
+                            <p style="color: var(--text-secondary); font-size: 0.8rem;">Current Bid</p>
+                            <p style="font-weight: 700;"><i class="fa-brands fa-ethereum"></i> 4.120 ETH</p>
+                        </div>
+                        <a href="{% url 'nft:detail' %}" class="btn btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Place Bid</a>
+                    </div>
+                </div>
+            </div>
+
+            {% for i in "3456" %}
+            <div class="nft-card animate">
+                <div class="nft-image-container" style="background: #F0F2F5;">
+                    <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                        <i class="fa-solid fa-image" style="font-size: 3rem; color: #ADB5BD;"></i>
+                    </div>
+                </div>
+                <div class="nft-info">
+                    <div class="nft-header">
+                        <h4 style="font-size: 1.2rem;">Epic Item #{{ i }}</h4>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;"><i class="fa-solid fa-clock"></i> 1h 22m</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <div style="width: 24px; height: 24px; border-radius: 50%; background: #DEE2E6;"></div>
+                        <span style="font-weight: 500; font-size: 0.9rem;">Creator</span>
+                    </div>
+                    <div class="nft-bid-section">
+                        <div>
+                            <p style="color: var(--text-secondary); font-size: 0.8rem;">Current Bid</p>
+                            <p style="font-weight: 700;"><i class="fa-brands fa-ethereum"></i> 1.{{ i }} ETH</p>
+                        </div>
+                        <a href="#" class="btn btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Place Bid</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="#" class="btn btn-outline" style="padding: 15px 40px; border-color: #E9ECEF; color: var(--text-secondary);">Load More</a>
+        </div>
+    </div>
+</section>
+
+<!-- Try our App Section -->
+<section class="section-padding animate">
+    <div class="container" style="background: #0A0A0B; border-radius: 30px; padding: 0 80px; display: flex; align-items: center; gap: 60px; overflow: hidden; height: 450px;">
+        <div style="flex: 1; color: white;">
+            <h2 style="font-size: 3rem; margin-bottom: 25px;">Try our App<br>Mobile NFT</h2>
+            <p style="color: #ADB5BD; margin-bottom: 40px;">
+                Download our mobile app to manage your NFT collection on the go. Available for iOS and Android.
+            </p>
+            <a href="#" class="btn btn-outline" style="color: white; border-color: white; border-radius: 10px; padding: 12px 25px;">
+                <i class="fa-solid fa-download" style="margin-right: 10px;"></i> Download Now
+            </a>
+        </div>
+        <div style="flex: 1; display: flex; justify-content: center; position: relative;">
+            <div style="width: 250px; height: 500px; background: #1A1A1D; border: 8px solid #343A40; border-radius: 40px; position: relative; top: 50px; box-shadow: 0 50px 100px rgba(0,0,0,0.5);">
+                <div style="padding: 20px;">
+                    <div style="width: 100%; height: 200px; background: #2C2C2E; border-radius: 20px;"></div>
+                    <div style="margin-top: 20px;">
+                        <div style="width: 80%; height: 15px; background: #2C2C2E; border-radius: 10px;"></div>
+                        <div style="width: 40%; height: 10px; background: #2C2C2E; border-radius: 10px; margin-top: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

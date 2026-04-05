@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NFT Distro - Exclusive NFT Marketplace{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar container">
+        <div class="logo">
+            <a href="{% url 'nft:home' %}">
+                <img src="{% static 'images/logos/logo.png' %}" alt="NFT Distro" style="height: 40px;">
+            </a>
+        </div>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="{% url 'nft:home' %}" class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">Explore</a></li>
+                <li><a href="{% url 'nft:explore' %}" class="{% if request.resolver_match.url_name == 'explore' %}active{% endif %}">Trending 🔥</a></li>
+                <li><a href="{% url 'nft:faq' %}" class="{% if request.resolver_match.url_name == 'faq' %}active{% endif %}">FAQ</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <div class="search-bar">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" placeholder="Search">
+            </div>
+            <a href="{% url 'nft:become_artist' %}" class="btn btn-primary">Become Artist</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-logo-section">
+                    <img src="{% static 'images/logos/logo.png' %}" alt="Logo" style="height: 40px;">
+                    <h2 class="brand-font" style="margin-top: 15px;">NFT Distro</h2>
+                    <p>Experience the Revolutionary World of Non-Fungible Tokens on Our Exclusive NFT Marketplace</p>
+                    <div style="margin-top: 20px; display: flex; gap: 10px; align-items: center;">
+                        <i class="fa-solid fa-sun" style="color: #6C757D;"></i>
+                        <div style="width: 40px; height: 20px; background: #FF6A95; border-radius: 20px; position: relative; cursor: pointer;">
+                            <div style="width: 14px; height: 14px; background: white; border-radius: 50%; position: absolute; right: 3px; top: 3px;"></div>
+                        </div>
+                        <i class="fa-solid fa-moon" style="color: #6C757D;"></i>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="footer-heading">Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Explore</a></li>
+                        <li><a href="#">About</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="footer-heading">Creator</h3>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'nft:faq' %}">FAQ</a></li>
+                        <li><a href="{% url 'nft:become_artist' %}">Become Artist</a></li>
+                    </ul>
+                </div>
+
+                <div class="community-section">
+                    <h3 class="footer-heading">Join our community</h3>
+                    <div style="position: relative;">
+                        <input type="email" placeholder="Enter your email address">
+                        <button style="position: absolute; right: 5px; top: 25px; background: black; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; Copyright NFT Distro 2023</div>
+                <div style="display: flex; gap: 20px; font-size: 1.2rem;">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-google"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-apple"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

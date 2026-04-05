@@ -11,48 +11,32 @@
         </p>
         
         <div style="max-width: 800px; margin: 0 auto 60px;">
-            <div class="search-bar" style="background: #F8F9FA; padding: 20px 30px; border-radius: 50px; margin-bottom: 40px;">
-                <i class="fa-solid fa-search" style="color: #ADB5BD;"></i>
-                <input type="text" placeholder="Search your ask" style="width: 100%; font-size: 1.1rem;">
-            </div>
+            <form action="{% url 'nft:faq' %}" method="GET" class="search-bar" style="background: #F8F9FA; padding: 20px 30px; border-radius: 50px; margin-bottom: 40px; display: flex; align-items: center;">
+                <i class="fa-solid fa-search" style="color: #ADB5BD; margin-right: 15px;"></i>
+                <input type="text" name="q" value="{{ query }}" placeholder="Search your ask" style="width: 100%; font-size: 1.1rem; border: none; background: transparent; outline: none;">
+                <button type="submit" style="display: none;">Search</button>
+            </form>
 
             <div style="display: flex; justify-content: center; gap: 20px; margin-bottom: 60px;">
-                <a href="#" class="btn btn-primary" style="padding: 12px 40px;">General</a>
-                <a href="#" class="btn btn-outline" style="border: none; background: #F8F9FA; padding: 12px 40px;">NFT Product</a>
-                <a href="#" class="btn btn-outline" style="border: none; background: #F8F9FA; padding: 12px 40px;">Payment</a>
+                <a href="?category=General{% if query %}&q={{ query }}{% endif %}" class="btn {% if selected_category == 'General' %}btn-primary{% else %}btn-outline{% endif %}" style="{% if selected_category != 'General' %}border: none; background: #F8F9FA;{% endif %} padding: 12px 40px;">General</a>
+                <a href="?category=NFT Product{% if query %}&q={{ query }}{% endif %}" class="btn {% if selected_category == 'NFT Product' %}btn-primary{% else %}btn-outline{% endif %}" style="{% if selected_category != 'NFT Product' %}border: none; background: #F8F9FA;{% endif %} padding: 12px 40px;">NFT Product</a>
+                <a href="?category=Payment{% if query %}&q={{ query }}{% endif %}" class="btn {% if selected_category == 'Payment' %}btn-primary{% else %}btn-outline{% endif %}" style="{% if selected_category != 'Payment' %}border: none; background: #F8F9FA;{% endif %} padding: 12px 40px;">Payment</a>
             </div>
 
             <div style="text-align: left;">
-                <div class="accordion-item animate">
-                    <div class="accordion-title">
-                        What is an NFT marketplace?
+                {% for faq in faqs %}
+                <div class="accordion-item animate" style="margin-bottom: 20px; border-bottom: 1px solid #EEE; padding-bottom: 15px;">
+                    <div class="accordion-title" style="font-weight: bold; font-size: 1.2rem; cursor: pointer; display: flex; justify-content: space-between;">
+                        {{ faq.question }}
                         <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem;"></i>
                     </div>
-                    <div style="margin-top: 20px; color: var(--text-secondary); line-height: 1.8;">
-                        An NFT marketplace is a platform that allows users to buy, sell, and trade non-fungible tokens (NFTs). NFTs are unique digital assets that can represent anything from artwork and collectibles to in-game items and virtual real estate.
+                    <div style="margin-top: 15px; color: var(--text-secondary); line-height: 1.8;">
+                        {{ faq.answer }}
                     </div>
                 </div>
-
-                <div class="accordion-item animate" style="animation-delay: 0.1s;">
-                    <div class="accordion-title">
-                        How does buying an NFT work?
-                        <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i>
-                    </div>
-                </div>
-
-                <div class="accordion-item animate" style="animation-delay: 0.2s;">
-                    <div class="accordion-title">
-                        What are the benefits of owning an NFT?
-                        <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i>
-                    </div>
-                </div>
-
-                <div class="accordion-item animate" style="animation-delay: 0.3s;">
-                    <div class="accordion-title">
-                        Are there any risks associated with buying NFTs?
-                        <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem;"></i>
-                    </div>
-                </div>
+                {% empty %}
+                <p style="text-align: center; color: var(--text-secondary);">No FAQs found.</p>
+                {% endfor %}
             </div>
         </div>
     </div>

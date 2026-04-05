@@ -40,6 +40,13 @@
                 Experience the next generation of digital assets. Our platform provides a secure and intuitive environment for creators and collectors to connect and trade unique tokens.
             </p>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                {% for feature in features %}
+                <div style="text-align: center;">
+                    <i class="fa-solid {{ feature.icon|default:'fa-star' }}" style="color: #BA68C8; font-size: 2rem; margin-bottom: 10px;"></i>
+                    <h3 style="font-size: 1.8rem;">{{ feature.value }}</h3>
+                    <p style="color: var(--text-secondary);">{{ feature.title }}</p>
+                </div>
+                {% empty %}
                 <div style="text-align: center;">
                     <i class="fa-solid fa-rocket" style="color: #BA68C8; font-size: 2rem; margin-bottom: 10px;"></i>
                     <h3 style="font-size: 1.8rem;">23,400</h3>
@@ -60,27 +67,24 @@
                     <h3 style="font-size: 1.8rem;">521 B+</h3>
                     <p style="color: var(--text-secondary);">Volume</p>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
 </section>
 
-<!-- Partners Section -->
 <section class="section-padding container animate">
     <h2 style="text-align: center; margin-bottom: 60px;">Our Partners</h2>
     <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px; opacity: 0.5;">
+        {% for partner in partners %}
+        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">{{ partner.name }}</div>
+        {% empty %}
         <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">LOGOTYPE</div>
         <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">BOGO</div>
         <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">TRUSTY</div>
         <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">LOGOSUM</div>
         <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">CRYPTO</div>
-    </div>
-    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 40px; opacity: 0.5; margin-top: 40px;">
-        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">FINANCE</div>
-        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">GALAXY</div>
-        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">MINT</div>
-        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">BLOCKS</div>
-        <div style="display: flex; justify-content: center; align-items: center; font-weight: 800; font-size: 1.2rem;">PANDA</div>
+        {% endfor %}
     </div>
 </section>
 
@@ -89,26 +93,21 @@
     <div class="container">
         <h2 style="text-align: center; margin-bottom: 60px; font-size: 2.5rem;">Our Team</h2>
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
+            {% for member in teams %}
             <div style="text-align: center;">
-                <img src="{% static 'images/team/member_1.png' %}" alt="Team member" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
-                <h3>Floyd Miles</h3>
-                <p style="color: var(--text-secondary);">Designer</p>
+                {% if member.image %}
+                <img src="{{ member.image.url }}" alt="{{ member.name }}" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+                {% else %}
+                <img src="https://ui-avatars.com/api/?name={{ member.name }}&background=random" alt="{{ member.name }}" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
+                {% endif %}
+                <h3>{{ member.name }}</h3>
+                <p style="color: var(--text-secondary);">{{ member.position }}</p>
             </div>
-            <div style="text-align: center;">
-                <img src="{% static 'images/team/member_2.png' %}" alt="Team member" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
-                <h3>Eleanor Pena</h3>
-                <p style="color: var(--text-secondary);">VA Designer</p>
+            {% empty %}
+            <div style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary);">
+                No team members found.
             </div>
-            <div style="text-align: center;">
-                <img src="{% static 'images/team/member_3.png' %}" alt="Team member" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
-                <h3>Kim Dorka</h3>
-                <p style="color: var(--text-secondary);">UX Specialist</p>
-            </div>
-            <div style="text-align: center;">
-                <img src="https://ui-avatars.com/api/?name=William+Lake&background=random" alt="Team member" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px;">
-                <h3>William Lake</h3>
-                <p style="color: var(--text-secondary);">Software Engineer</p>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

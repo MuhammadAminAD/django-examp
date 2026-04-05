@@ -9,95 +9,66 @@
         <!-- Search and Filters -->
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
             <div style="display: flex; gap: 20px;">
-                <a href="#" class="btn btn-primary">NFT's</a>
-                <a href="#" class="btn btn-outline" style="border: none; background: #F8F9FA;">Collections</a>
-                <a href="#" class="btn btn-outline" style="border: none; background: #F8F9FA;">Series</a>
+                <a href="?category=&sort={{ sort|default:'' }}" class="btn {% if not selected_category %}btn-primary{% else %}btn-outline{% endif %}" style="{% if selected_category %}border: none; background: #F8F9FA;{% endif %}">All NFTs</a>
+                <a href="?category=Digital Art&sort={{ sort|default:'' }}" class="btn {% if selected_category == 'Digital Art' %}btn-primary{% else %}btn-outline{% endif %}" style="{% if selected_category != 'Digital Art' %}border: none; background: #F8F9FA;{% endif %}">Digital Art</a>
+                <a href="?category=Collectibles&sort={{ sort|default:'' }}" class="btn {% if selected_category == 'Collectibles' %}btn-primary{% else %}btn-outline{% endif %}" style="{% if selected_category != 'Collectibles' %}border: none; background: #F8F9FA;{% endif %}">Collectibles</a>
             </div>
             
-            <div style="display: flex; align-items: center; gap: 15px;">
+            <form id="sortForm" method="GET" action="{% url 'nft:explore' %}" style="display: flex; align-items: center; gap: 15px;">
+                <input type="hidden" name="category" value="{{ selected_category|default:'' }}">
+                {% if q %}<input type="hidden" name="q" value="{{ q }}">{% endif %}
                 <span style="color: var(--text-secondary);">Sort by:</span>
-                <div style="padding: 10px 20px; background: #F8F9FA; border-radius: 50px; font-weight: 600; cursor: pointer;">
-                    Recently Added <i class="fa-solid fa-chevron-down" style="font-size: 0.8rem; margin-left: 10px;"></i>
-                </div>
-            </div>
+                <select name="sort" onchange="document.getElementById('sortForm').submit();" style="padding: 10px 20px; background: #F8F9FA; border: none; border-radius: 50px; font-weight: 600; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none;">
+                    <option value="-created_at" {% if sort == '-created_at' %}selected{% endif %}>Recently Added</option>
+                    <option value="price" {% if sort == 'price' %}selected{% endif %}>Lowest Price</option>
+                    <option value="-price" {% if sort == '-price' %}selected{% endif %}>Highest Price</option>
+                </select>
+            </form>
         </div>
 
         <!-- NFT Grid -->
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
-            <!-- NFT Item 1 -->
+            {% for nft in nfts %}
+            <!-- NFT Item -->
             <div class="nft-card animate">
-                <div class="nft-image-container">
-                    <img src="{% static 'images/nfts/robot_1.png' %}" alt="ExBoot #1">
-                </div>
-                <div class="nft-info">
-                    <div class="nft-header">
-                        <h4 style="font-size: 1.2rem;">ExBoot #1</h4>
-                        <div style="color: var(--text-secondary); font-size: 0.9rem;"><i class="fa-solid fa-clock"></i> 2h 4m 10s</div>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                        <img src="https://ui-avatars.com/api/?name=Richard&background=random" style="width: 24px; height: 24px; border-radius: 50%;">
-                        <span style="font-weight: 500; font-size: 0.9rem;">Richard</span>
-                        <i class="fa-solid fa-circle-check" style="color: #42a5f5; font-size: 0.8rem;"></i>
-                    </div>
-                    <div class="nft-bid-section">
-                        <div>
-                            <p style="color: var(--text-secondary); font-size: 0.8rem;">Current Bid</p>
-                            <p style="font-weight: 700;"><i class="fa-brands fa-ethereum"></i> 3.421 ETH</p>
-                        </div>
-                        <a href="{% url 'nft:detail' %}" class="btn btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Place Bid</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- NFT Item 2 (Astronaut) -->
-            <div class="nft-card animate" style="animation-delay: 0.1s;">
-                <div class="nft-image-container">
-                    <img src="{% static 'images/nfts/astronaut.png' %}" alt="ExBoot #2">
-                </div>
-                <div class="nft-info">
-                    <div class="nft-header">
-                        <h4 style="font-size: 1.2rem;">ExBoot #2</h4>
-                        <div style="color: var(--text-secondary); font-size: 0.9rem;"><i class="fa-solid fa-clock"></i> 4h 12m 5s</div>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                        <img src="https://ui-avatars.com/api/?name=Michael&background=random" style="width: 24px; height: 24px; border-radius: 50%;">
-                        <span style="font-weight: 500; font-size: 0.9rem;">Michael</span>
-                        <i class="fa-solid fa-circle-check" style="color: #42a5f5; font-size: 0.8rem;"></i>
-                    </div>
-                    <div class="nft-bid-section">
-                        <div>
-                            <p style="color: var(--text-secondary); font-size: 0.8rem;">Current Bid</p>
-                            <p style="font-weight: 700;"><i class="fa-brands fa-ethereum"></i> 4.120 ETH</p>
-                        </div>
-                        <a href="{% url 'nft:detail' %}" class="btn btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Place Bid</a>
-                    </div>
-                </div>
-            </div>
-
-            {% for i in "3456" %}
-            <div class="nft-card animate">
-                <div class="nft-image-container" style="background: #F0F2F5;">
+                <div class="nft-image-container" {% if not nft.image %}style="background: #F0F2F5;"{% endif %}>
+                    {% if nft.image %}
+                    <img src="{{ nft.image.url }}" alt="{{ nft.title }}">
+                    {% else %}
                     <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
                         <i class="fa-solid fa-image" style="font-size: 3rem; color: #ADB5BD;"></i>
                     </div>
+                    {% endif %}
                 </div>
                 <div class="nft-info">
                     <div class="nft-header">
-                        <h4 style="font-size: 1.2rem;">Epic Item #{{ i }}</h4>
-                        <div style="color: var(--text-secondary); font-size: 0.9rem;"><i class="fa-solid fa-clock"></i> 1h 22m</div>
+                        <h4 style="font-size: 1.2rem;">{{ nft.title }}</h4>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">
+                            <i class="fa-solid fa-clock"></i> 
+                            {% if nft.end_time %}
+                                {{ nft.end_time|timeuntil }}
+                            {% else %}
+                                No Limit
+                            {% endif %}
+                        </div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-                        <div style="width: 24px; height: 24px; border-radius: 50%; background: #DEE2E6;"></div>
-                        <span style="font-weight: 500; font-size: 0.9rem;">Creator</span>
+                        <img src="https://ui-avatars.com/api/?name={{ nft.creator.username }}&background=random" style="width: 24px; height: 24px; border-radius: 50%;">
+                        <span style="font-weight: 500; font-size: 0.9rem;">{{ nft.creator.username }}</span>
+                        <i class="fa-solid fa-circle-check" style="color: #42a5f5; font-size: 0.8rem;"></i>
                     </div>
                     <div class="nft-bid-section">
                         <div>
                             <p style="color: var(--text-secondary); font-size: 0.8rem;">Current Bid</p>
-                            <p style="font-weight: 700;"><i class="fa-brands fa-ethereum"></i> 1.{{ i }} ETH</p>
+                            <p style="font-weight: 700;"><i class="fa-brands fa-ethereum"></i> {{ nft.price }} ETH</p>
                         </div>
-                        <a href="#" class="btn btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Place Bid</a>
+                        <a href="{% url 'nft:detail_pk' nft.id %}" class="btn btn-primary" style="padding: 8px 15px; font-size: 0.8rem;">Place Bid</a>
                     </div>
                 </div>
+            </div>
+            {% empty %}
+            <div style="grid-column: 1 / -1; text-align: center; color: var(--text-secondary); padding: 40px;">
+                No NFTs found.
             </div>
             {% endfor %}
         </div>
